@@ -114,7 +114,7 @@
         <div class="row">
           <div class="col s2"></div>
           <div class="col s3">
-            <div class="btn-floating btn waves-effect waves-light grey darken-3">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3" onclick="myCalculator.refreshCalculatorScreen('.')">
               <i class="material-icons">fiber_manual_record</i>
             </div>
           </div>
@@ -124,7 +124,7 @@
             </div>
           </div>
           <div class="col s3">
-            <div class="btn-floating btn waves-effect waves-light lime darken-2">
+            <div id="op-result" class="btn-floating btn waves-effect waves-light lime darken-2 disabled">
               <i>=</i>
             </div>
           </div>
@@ -133,7 +133,7 @@
         <hr>
         <div class="row">
           <div class="col s12">
-            <a class="waves-effect waves-light btn-large red darken-1"><i>C</i></a>
+            <a class="waves-effect waves-light btn-large red darken-1" onclick="myCalculator.restartCalculator()"><i>C</i></a>
           </div>
         </div>
       </div>

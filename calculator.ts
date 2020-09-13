@@ -27,6 +27,22 @@ class CalculatorTS {
     this.numberIsValid = false;
     document.querySelector<any>("#calc-screen").innerHTML = this.numberScreen;
   }
+
+  restartCalculator() {
+    this.numberScreen = "0";
+    this.acumulatorNumber = 0;
+    this.currentNumber = 0;
+    this.firstRun = true;
+    this.runOperation = false;
+    this.beforeOperation = 0;
+    this.afterOperation = 0;
+    this.isEmptyScreen = true;
+    this.ruleDecimalNumber = /^\d*\.?\d+$/;
+    this.numberIsValid = false;
+    document.querySelector<any>("#calc-screen").innerHTML = this.numberScreen;
+    this.checkExpression();
+  }
+
   makeOperation(caseOperation: string) {
     if (this.runOperation == false) {
       document.querySelector<any>("#calc-screen").innerHTML = caseOperation;
@@ -34,6 +50,7 @@ class CalculatorTS {
       this.runOperation = true;
       this.numberScreen = "";
       this.isEmptyScreen = true;
+      this.checkExpression();
     } else if (this.isEmptyScreen) {
       // @ts-expect-error: Objeto obtenido de materialize css
       M.toast({ html: "Pulsa algun número !!", classes: "red rounded" });
@@ -52,19 +69,52 @@ class CalculatorTS {
     }
   }
 
+  enableOperations() {
+    let aClass: any = null;
+    aClass = document.querySelector<any>("#op-add");
+    aClass.classList.remove("disabled");
+    aClass = document.querySelector<any>("#op-remove");
+    aClass.classList.remove("disabled");
+    aClass = document.querySelector<any>("#op-product");
+    aClass.classList.remove("disabled");
+    aClass = document.querySelector<any>("#op-division");
+    aClass.classList.remove("disabled");
+  }
+
+  disabledOperations() {
+    let aClass: any = null;
+    aClass = document.querySelector<any>("#op-add");
+    aClass.classList.add("disabled");
+    aClass = document.querySelector<any>("#op-remove");
+    aClass.classList.add("disabled");
+    aClass = document.querySelector<any>("#op-product");
+    aClass.classList.add("disabled");
+    aClass = document.querySelector<any>("#op-division");
+    aClass.classList.add("disabled");
+  }
+
+  enableResultBotton() {
+    let aClass: any = null;
+    aClass = document.querySelector<any>("#op-result");
+    aClass.classList.remove("disabled");
+  }
+
+  disabledResultButton() {
+    let aClass: any = null;
+    aClass = document.querySelector<any>("#op-result");
+    aClass.classList.add("disabled");
+  }
+
   checkExpression() {
     this.numberIsValid = this.ruleDecimalNumber.test(this.numberScreen);
-    let aClass: any = null;
-    let index: number = 0;
-    if (this.numberIsValid) {
-      aClass = document.querySelector<any>("#op-add");
-      aClass.classList.remove("disabled");
-      aClass = document.querySelector<any>("#op-remove");
-      aClass.classList.remove("disabled");
-      aClass = document.querySelector<any>("#op-product");
-      aClass.classList.remove("disabled");
-      aClass = document.querySelector<any>("#op-division");
-      aClass.classList.remove("disabled");
+    if (this.numberIsValid && this.runOperation == false) {
+      this.enableOperations();
+    } else if (this.numberIsValid && this.runOperation == true) {
+      this.disabledOperations();
+      this.enableResultBotton();
+    } else {
+      this.disabledOperations();
+      this.disabledResultButton();
     }
   }
 
