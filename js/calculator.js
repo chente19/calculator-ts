@@ -9,6 +9,8 @@ var CalculatorTS = /** @class */ (function () {
         this.beforeOperation = 0;
         this.afterOperation = 0;
         this.isEmptyScreen = true;
+        this.ruleDecimalNumber = /^\d*\.?\d+$/;
+        this.numberIsValid = false;
         document.querySelector("#calc-screen").innerHTML = this.numberScreen;
     }
     CalculatorTS.prototype.makeOperation = function (caseOperation) {
@@ -37,17 +39,34 @@ var CalculatorTS = /** @class */ (function () {
             }
         }
     };
+    CalculatorTS.prototype.checkExpression = function () {
+        this.numberIsValid = this.ruleDecimalNumber.test(this.numberScreen);
+        var aClass = null;
+        var index = 0;
+        if (this.numberIsValid) {
+            aClass = document.querySelector("#op-add");
+            aClass.classList.remove("disabled");
+            aClass = document.querySelector("#op-remove");
+            aClass.classList.remove("disabled");
+            aClass = document.querySelector("#op-product");
+            aClass.classList.remove("disabled");
+            aClass = document.querySelector("#op-division");
+            aClass.classList.remove("disabled");
+        }
+    };
     CalculatorTS.prototype.refreshCalculatorScreen = function (digit) {
         if (this.firstRun) {
             this.numberScreen = digit;
             this.firstRun = false;
             this.isEmptyScreen = false;
             document.querySelector("#calc-screen").innerHTML = this.numberScreen;
+            this.checkExpression();
         }
         else {
             this.isEmptyScreen = false;
             this.numberScreen = this.numberScreen + digit;
             document.querySelector("#calc-screen").innerHTML = this.numberScreen;
+            this.checkExpression();
         }
     };
     return CalculatorTS;
