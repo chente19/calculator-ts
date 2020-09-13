@@ -1,0 +1,48 @@
+.top-top {
+  grid-area: header;
+  color: #BA68C8;
+}
+
+.left-side {
+  grid-area: leftside;
+}
+
+.main-calculator {
+  grid-area: main;
+}
+
+.right-side {
+  grid-area: rightside;
+}
+
+.bottom-footer {
+  grid-area: footer;
+  color: #BA68C8;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "header header header header header header"
+    "main main main main main main"
+    "footer footer footer footer footer footer";
+  grid-gap: 10px;
+  background-color: #F5F5F5;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+#base-calculator {
+    padding: 1em;
+    background-color: #BA68C8;
+}
+
+hr {
+    color: white;
+}

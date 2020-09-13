@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="assets/good.ico" type="image/x-icon" />
+  <title>Calculator TS</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="css/calculator_grid.css" />
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="top-top">Slim Calculator</div>
+
+    <div class="main-calculator">
+      <div class="container" id="base-calculator">
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s8 white">
+            <p class="flow-text" id="calc-screen"></p>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <!--OPERATOR BUTTONS-->
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3" onclick="myCalculator.makeOperation('+')">
+              <i class="material-icons">add</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3" onclick="myCalculator.makeOperation('-')">
+              <i class="material-icons">remove</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3">
+              <i class="material-icons">clear</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3">
+              /
+            </div>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <hr>
+        <!--LINE 1 number buttons-->
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('7')">
+              <i>7</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('8')">
+              <i>8</i>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('9')">
+              <i>9</i>
+            </div>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <!--LINE 2 number buttons-->
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('4')">
+              <i>4</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('5')">
+              <i>5</i>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('6')">
+              <i>6</i>
+            </div>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <!--LINE 3 number buttons-->
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('1')">
+              <i>1</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('2')">
+              <i>2</i>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('3')">
+              <i>3</i>
+            </div>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <!--LINE 4 number buttons-->
+        <div class="row">
+          <div class="col s2"></div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light grey darken-3">
+              <i class="material-icons">fiber_manual_record</i>
+            </div>
+          </div>
+          <div class="col s2">
+            <div class="btn-floating btn waves-effect waves-light blue lighten-2" onclick="myCalculator.refreshCalculatorScreen('0')">
+              <i>0</i>
+            </div>
+          </div>
+          <div class="col s3">
+            <div class="btn-floating btn waves-effect waves-light lime darken-2">
+              <i>=</i>
+            </div>
+          </div>
+          <div class="col s2"></div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col s12">
+            <a class="waves-effect waves-light btn-large red darken-1"><i>C</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bottom-footer">Created by chente19</div>
+  </div>
+
+  <script src="js/calculator.js"></script>
+  <script src="js/materialize.min.js"></script>
+</body>
+
+</html>
