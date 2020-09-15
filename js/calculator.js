@@ -2,8 +2,7 @@
 var CalculatorTS = /** @class */ (function () {
     function CalculatorTS(digit) {
         this.numberScreen = digit;
-        this.acumulatorNumber = 0;
-        this.currentNumber = 0;
+        this.acumulatorNumber = 0.0;
         this.firstRun = true;
         this.runOperation = false;
         this.beforeOperation = 0;
@@ -11,12 +10,12 @@ var CalculatorTS = /** @class */ (function () {
         this.isEmptyScreen = true;
         this.ruleDecimalNumber = /^\d*\.?\d+$/;
         this.numberIsValid = false;
+        this.symbolOperation = "";
         document.querySelector("#calc-screen").innerHTML = this.numberScreen;
     }
     CalculatorTS.prototype.restartCalculator = function () {
-        this.numberScreen = "";
-        this.acumulatorNumber = 0;
-        this.currentNumber = 0;
+        this.numberScreen = "Welcome";
+        this.acumulatorNumber = 0.0;
         this.firstRun = true;
         this.runOperation = false;
         this.beforeOperation = 0;
@@ -24,35 +23,48 @@ var CalculatorTS = /** @class */ (function () {
         this.isEmptyScreen = true;
         this.ruleDecimalNumber = /^\d*\.?\d+$/;
         this.numberIsValid = false;
+        this.symbolOperation = "";
         document.querySelector("#calc-screen").innerHTML = this.numberScreen;
         this.checkExpression();
     };
     CalculatorTS.prototype.makeOperation = function (caseOperation) {
+        this.symbolOperation = caseOperation;
         if (this.runOperation == false) {
             document.querySelector("#calc-screen").innerHTML = caseOperation;
-            this.beforeOperation = parseInt(this.numberScreen);
+            this.beforeOperation = parseFloat(this.numberScreen);
             this.runOperation = true;
             this.numberScreen = "";
             this.isEmptyScreen = true;
             this.checkExpression();
         }
-        else if (this.isEmptyScreen) {
-            // @ts-expect-error: Objeto obtenido de materialize css
-            M.toast({ html: "Pulsa algun número !!", classes: "red rounded" });
-        }
         else {
-            switch (caseOperation) {
-                case "+":
-                    this.afterOperation = parseInt(this.numberScreen);
-                    this.acumulatorNumber = this.beforeOperation + this.afterOperation;
-                    this.runOperation = false;
-                    break;
-                case "-":
-                    this.afterOperation = parseInt(this.numberScreen);
-                    this.acumulatorNumber = this.beforeOperation - this.afterOperation;
-                    this.runOperation = false;
-            }
+            // @ts-expect-error: Objeto obtenido de materialize css
+            M.toast({ html: "Pulsa algun número, error !!", classes: "red rounded" });
         }
+    };
+    CalculatorTS.prototype.resultCalculator = function () {
+        var theResult = "";
+        this.afterOperation = parseFloat(this.numberScreen);
+        switch (this.symbolOperation) {
+            case "+":
+                this.acumulatorNumber = this.beforeOperation + this.afterOperation;
+                theResult = "= " + this.acumulatorNumber.toString();
+                break;
+            case "-":
+                this.acumulatorNumber = this.beforeOperation - this.afterOperation;
+                theResult = "= " + this.acumulatorNumber.toString();
+                break;
+            case "x":
+                this.acumulatorNumber = this.beforeOperation * this.afterOperation;
+                theResult = "= " + this.acumulatorNumber.toString();
+                break;
+            case "/":
+                this.acumulatorNumber = this.beforeOperation / this.afterOperation;
+                theResult = "= " + this.acumulatorNumber.toString();
+                break;
+        }
+        this.restartCalculator();
+        document.querySelector("#calc-screen").innerHTML = theResult;
     };
     CalculatorTS.prototype.enableOperations = function () {
         var aClass = null;
@@ -117,4 +129,4 @@ var CalculatorTS = /** @class */ (function () {
     };
     return CalculatorTS;
 }());
-var myCalculator = new CalculatorTS("");
+var myCalculator = new CalculatorTS("Welcome");
