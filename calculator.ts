@@ -29,7 +29,7 @@ class CalculatorTS {
   }
 
   restartCalculator() {
-    this.numberScreen = "0";
+    this.numberScreen = "";
     this.acumulatorNumber = 0;
     this.currentNumber = 0;
     this.firstRun = true;
@@ -133,4 +133,4 @@ class CalculatorTS {
     }
   }
 }
-let myCalculator: CalculatorTS = new CalculatorTS("0");
+let myCalculator: CalculatorTS = new CalculatorTS("");

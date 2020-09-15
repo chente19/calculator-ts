@@ -14,7 +14,7 @@ var CalculatorTS = /** @class */ (function () {
         document.querySelector("#calc-screen").innerHTML = this.numberScreen;
     }
     CalculatorTS.prototype.restartCalculator = function () {
-        this.numberScreen = "0";
+        this.numberScreen = "";
         this.acumulatorNumber = 0;
         this.currentNumber = 0;
         this.firstRun = true;
@@ -117,4 +117,4 @@ var CalculatorTS = /** @class */ (function () {
     };
     return CalculatorTS;
 }());
-var myCalculator = new CalculatorTS("0");
+var myCalculator = new CalculatorTS("");
